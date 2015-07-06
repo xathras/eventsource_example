@@ -14,8 +14,10 @@ module Commands
     end
 
     def execute
-      event = PricedItemEvent.create(item_id: id, event_name: event_name, data: json_attrs)
-      Projections.for(event_name).map { |projection| projection.process(event_name, event) }
+      PricedItem.transaction do
+        event = PricedItemEvent.create(item_id: id, event_name: event_name, data: json_attrs)
+        Projections.for(event_name).map { |projection| projection.process(event_name, OpenStruct.new(json_attrs.merge(id: id))) }
+      end
     end
 
   private

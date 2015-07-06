@@ -1,12 +1,12 @@
 module Projections
   class Projection
-    def self.handled_events
-      @handled_events ||= []
+    def self.listens_for
+      @listens_for ||= []
     end
 
-    def self.register_for(*event_names)
-      @handled_events = event_names
-      Projections.add new
+    def self.listens_for=(*event_names)
+      @listens_for ||= []
+      @listens_for += Array(event_names)
     end
 
     def process(event_name, event_data)
@@ -14,7 +14,7 @@ module Projections
     end
 
     def handled_events
-      self.class.handled_events
+      self.class.listens_for
     end
   end
 end

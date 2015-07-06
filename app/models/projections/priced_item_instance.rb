@@ -1,7 +1,7 @@
 module Projections
   class PricedItemInstance < Projection
-    register_for :create_priced_item
-    
+    self.listens_for = :create_priced_item
+
     def process(event_name, event_data)
       case event_name
       when :create_priced_item
