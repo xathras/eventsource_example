@@ -1,0 +1,8 @@
+example_id                                                  | status | run_time        |
+----------------------------------------------------------- | ------ | --------------- |
+./spec/models/projections/list_spec.rb[1:1]                 | passed | 0.00118 seconds |
+./spec/models/projections/list_spec.rb[1:2]                 | passed | 0.001 seconds   |
+./spec/models/projections/priced_item_instance_spec.rb[1:1] | passed | 0.01703 seconds |
+./spec/models/projections/projection_spec.rb[1:1]           | passed | 0.00292 seconds |
+./spec/models/projections_spec.rb[1:1]                      | passed | 0.00162 seconds |
+./spec/models/projections_spec.rb[1:2]                      | failed | 0.00798 seconds |

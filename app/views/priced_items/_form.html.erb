@@ -1,0 +1,12 @@
+<%= form_for @form_object, url: priced_items_path do |f| %>
+  <%= f.label :title %><br>
+  <%= f.text_area :title %>
+  <br>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label :amount %><%= f.text_field :amount %><br>
+  <label><%= f.check_box :taxed %>Taxed?</label>
+  <br>
+  <%= f.submit %>
+<% end %>
