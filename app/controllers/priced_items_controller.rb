@@ -13,6 +13,19 @@ class PricedItemsController < ApplicationController
     end
   end
 
+  def edit
+    @form_object = Commands::UpdatePricedItem.new PricedItem.find_by(id: params[:id]).attributes.slice('id', 'title', 'description', 'amount', 'taxed')
+  end
+
+  def update
+    @form_object = Commands::UpdatePricedItem.new params.require(:commands_update_priced_item).permit(:id, :title, :description, :amount, :taxed).merge(id: params[:id])
+    if @form_object.valid? && @form_object.execute
+      redirect_to priced_items_path
+    else
+      render action: 'edit'
+    end
+  end
+
 protected
   helper_method def priced_items
     @priced_items ||= PricedItem.all

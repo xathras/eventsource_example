@@ -6,7 +6,7 @@ module Projections
 
     def self.listens_for=(*event_names)
       @listens_for ||= []
-      @listens_for += Array(event_names)
+      @listens_for += Array(*event_names)
     end
 
     def process(event_name, event_data)

@@ -1,4 +1,4 @@
 <tr>
-  <td><%= priced_item.title %></td>
+  <td><%= link_to priced_item.title, edit_priced_item_path(priced_item) %></td>
   <td><%= number_to_currency priced_item.amount %></td>
 </tr>

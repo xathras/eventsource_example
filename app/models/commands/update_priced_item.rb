@@ -1,20 +1,16 @@
 module Commands
-  class CreatePricedItem
+  class UpdatePricedItem
     include ActiveModel::Model
 
-    attr_accessor :title, :description, :amount, :taxed
-    validates :title, :description, :amount, presence: true
+    attr_accessor :id, :title, :description, :amount, :taxed
+    validates :id, :title, :description, :amount, presence: true
 
     def event_name
-      :create_priced_item
+      :update_priced_item
     end
 
     def persisted?
-      false
-    end
-
-    def id
-      @id ||= SecureRandom.uuid
+      true
     end
 
     def execute

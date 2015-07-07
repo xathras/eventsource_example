@@ -1,6 +1,6 @@
 module Projections
   class PricedItemInstance < Projection
-    self.listens_for = :create_priced_item
+    self.listens_for = :create_priced_item, :update_priced_item
 
     def process(event_name, event_data)
       case event_name
@@ -8,6 +8,10 @@ module Projections
         PricedItem.create(id: event_data.id, title: event_data.title,
           description: event_data.description, amount: event_data.amount,
           taxed: event_data.taxed)
+      when :update_priced_item
+        item = PricedItem.find(event_data.id)
+        item.update_attributes(title: event_data.title, description: event_data.description,
+          amount: event_data.amount, taxed: event_data.taxed)
       else
         raise ArgumentError, "Do not know how to process #{event_name}"
       end
