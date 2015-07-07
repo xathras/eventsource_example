@@ -26,9 +26,14 @@ class PricedItemsController < ApplicationController
     end
   end
 
+  def destroy
+    Commands::DeletePricedItem.new(params[:id]).execute
+    redirect_to priced_items_path
+  end
+
 protected
   helper_method def priced_items
-    @priced_items ||= PricedItem.all
+    @priced_items ||= PricedItem.where(deleted: false)
   end
 
 end

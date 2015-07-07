@@ -1,4 +1,5 @@
 <tr>
   <td><%= link_to priced_item.title, edit_priced_item_path(priced_item) %></td>
   <td><%= number_to_currency priced_item.amount %></td>
+  <td><%= link_to 'Delete', priced_item_path(priced_item), data: { method: :delete } %></td>
 </tr>

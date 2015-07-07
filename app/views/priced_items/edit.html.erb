@@ -1,2 +1,10 @@
-<h1>New Priced Item</h1>
+<h1>Edit Priced Item</h1>
 <%= render 'form' %>
+<h2>History</h2>
+<table>
+  <tr>
+    <th>Event</th>
+    <th>Date</th>
+  </tr>
+  <%= render collection: PricedItemEvent.where(item_id: params[:id]).order('created_at'), partial: 'history_event' %>
+</table>

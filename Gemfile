@@ -36,6 +36,7 @@ gem 'rspec-rails'
 gem 'require_all'
 
 group :development, :test do
+  gem 'thin'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
