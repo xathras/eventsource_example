@@ -2,8 +2,9 @@ module Commands
   class SchedulePricedItemChange
     include ActiveModel::Model
 
-    attr_accessor :id, :title, :description, :amount, :taxed
-    validates :id, :title, :description, :amount, presence: true
+    attr_accessor :id, :title, :description, :amount, :taxed, :effective_date
+    validates :id, :title, :description, :amount, :effective_date,
+              presence: true
 
     def event_name
       :schedule_priced_item_change
@@ -27,7 +28,8 @@ module Commands
         title: title,
         description: description,
         amount: amount,
-        taxed: taxed
+        taxed: taxed,
+        effective_date: effective_date
       }
     end
   end

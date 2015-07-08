@@ -1,0 +1,2 @@
+jQuery ->
+  $('.date-field').datepicker()

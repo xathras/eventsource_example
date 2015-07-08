@@ -2,8 +2,8 @@ module Commands
   class UpdatePricedItem
     include ActiveModel::Model
 
-    attr_accessor :id, :title, :description, :amount, :taxed, :effective_date
-    validates :id, :title, :description, :amount, :effective_date,
+    attr_accessor :id, :title, :description, :amount, :taxed
+    validates :id, :title, :description, :amount,
               presence: true
 
     def event_name

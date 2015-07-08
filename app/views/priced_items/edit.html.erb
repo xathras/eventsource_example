@@ -8,3 +8,12 @@
   </tr>
   <%= render collection: PricedItemEvent.where(item_id: params[:id]).order('created_at'), partial: 'history_event' %>
 </table>
+<%= link_to 'Schedule Update', new_priced_item_scheduled_update_path(priced_item_id: params[:id]) %>
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>Effective Date</th>
+  </tr>
+  <%= render collection: ScheduledPricedItemChange.order('effective_date'),
+             partial: 'scheduled_updates/scheduled_update' %>
+</table>

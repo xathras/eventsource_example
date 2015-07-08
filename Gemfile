@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rspec-rails'
 gem 'require_all'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'thin'
