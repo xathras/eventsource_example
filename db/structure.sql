@@ -93,6 +93,42 @@ CREATE TABLE priced_items (
 
 
 --
+-- Name: scheduled_priced_item_changes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE scheduled_priced_item_changes (
+    id integer NOT NULL,
+    item_id uuid,
+    effective_date timestamp without time zone,
+    title text,
+    description text,
+    amount numeric(8,2) DEFAULT 0.0 NOT NULL,
+    taxed boolean DEFAULT false NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: scheduled_priced_item_changes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE scheduled_priced_item_changes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: scheduled_priced_item_changes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE scheduled_priced_item_changes_id_seq OWNED BY scheduled_priced_item_changes.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -109,6 +145,13 @@ ALTER TABLE ONLY priced_item_events ALTER COLUMN id SET DEFAULT nextval('priced_
 
 
 --
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY scheduled_priced_item_changes ALTER COLUMN id SET DEFAULT nextval('scheduled_priced_item_changes_id_seq'::regclass);
+
+
+--
 -- Name: priced_item_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -122,6 +165,14 @@ ALTER TABLE ONLY priced_item_events
 
 ALTER TABLE ONLY priced_items
     ADD CONSTRAINT priced_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: scheduled_priced_item_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY scheduled_priced_item_changes
+    ADD CONSTRAINT scheduled_priced_item_changes_pkey PRIMARY KEY (id);
 
 
 --
@@ -142,4 +193,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150706155106');
 INSERT INTO schema_migrations (version) VALUES ('20150706161146');
 
 INSERT INTO schema_migrations (version) VALUES ('20150706161610');
+
+INSERT INTO schema_migrations (version) VALUES ('20150708144020');
 
